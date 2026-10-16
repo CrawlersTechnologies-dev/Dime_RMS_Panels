@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+/*
+  Dime Quest design tokens.
+  Brand colors are sampled from the logo: navy D (#122029) and plate orange (#FF5A00).
+  Use the semantic names (brand, ink, surface, line…) in components, never raw hex.
+*/
+@theme {
+  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fredoka", "Figtree", ui-sans-serif, sans-serif;
+
+  --color-brand-50: #fff4ec;
+  --color-brand-100: #ffe3d0;
+  --color-brand-200: #ffc29c;
+  --color-brand-400: #ff7b33;
+  --color-brand-500: #ff5a00;
+  --color-brand-600: #e04e00; /* hover / text on white (AA for large text) */
+  --color-brand-700: #b33e00; /* orange text on white at body size */
+
+  --color-ink-950: #0c161d;
+  --color-ink-900: #122029; /* logo navy: sidebar, headings */
+  --color-ink-800: #1d2f3b;
+  --color-ink-700: #2c4150;
+  --color-ink-500: #5b6b76;
+  --color-ink-400: #84919a;
+  --color-ink-300: #b4bdc3;
+
+  --color-canvas: #f4f6f7; /* page background, cool grey */
+  --color-surface: #ffffff;
+  --color-line: #e3e7ea;
+  --color-line-strong: #cfd6db;
+
+  --color-ok-50: #e8f5ee;
+  --color-ok-300: #7ee2b0; /* positive change on navy */
+  --color-ok-600: #1f8a5b;
+  --color-warn-50: #fdf3dc;
+  --color-warn-600: #a86e00;
+  --color-danger-50: #fbe9e9;
+  --color-danger-600: #c43636;
+  --color-info-50: #e7f0f8;
+  --color-info-600: #2a6ea6;
+
+  --radius-panel: 14px;
+}
+
+@layer base {
+  html { -webkit-font-smoothing: antialiased; }
+  body {
+    @apply bg-canvas text-ink-900 font-sans;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+  }
+  .tabular { font-variant-numeric: tabular-nums; }
+  /* Keep absolutely positioned children (sr-only labels) inside horizontal scrollers,
+     otherwise they escape to the page and cause sideways scrolling on phones. */
+  .overflow-x-auto { position: relative; }
+  .select-chevron {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235b6b76' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
